@@ -27,6 +27,14 @@ pipeline {
         bat './gradlew sonarqube'
         }
         }
+        stage('Code Quality') {
+        steps{
+        def qg = waitForQualityGate()
+                        if (qg.status != 'OK') {
+                            error "Quality Gate échoué: ${qg.status}"
+                        }
+                        }
+        }
 
 
 
