@@ -47,17 +47,17 @@ pipeline {
                 }
             }
         }
-
-    }
     stage('Deploy') {
-        steps {
-            withCredentials([usernamePassword(credentialsId: 'maven-credentials-id',
-                                             usernameVariable: 'MAVEN_USER',
-                                             passwordVariable: 'MAVEN_PASSWORD')]) {
-                bat './gradlew publish -PMAVEN_USER=%MAVEN_USER% -PMAVEN_PASSWORD=%MAVEN_PASSWORD%'
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'maven-credentials-id',
+                                                 usernameVariable: 'MAVEN_USER',
+                                                 passwordVariable: 'MAVEN_PASSWORD')]) {
+                    bat './gradlew publish -PMAVEN_USER=%MAVEN_USER% -PMAVEN_PASSWORD=%MAVEN_PASSWORD%'
+                }
             }
         }
     }
+
 
 
     post {
