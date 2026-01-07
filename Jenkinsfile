@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Analyse du code') {
             steps {
-                withSonarQubeEnv('MySonarQubeServer') {  // <-- Attention ici
+                withSonarQubeEnv('sonar') {  // <-- Attention ici
                     bat './gradlew sonarqube'
                 }
             }
