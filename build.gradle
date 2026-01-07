@@ -28,7 +28,7 @@ test {
 }
 
 
-/*jacocoTestReport {
+jacocoTestReport {
     dependsOn test
 
     reports {
@@ -36,7 +36,7 @@ test {
         csv.required = false
         html.outputLocation = file("$buildDir/reports/jacoco")
     }
-}*/
+}
 
 sonar{
     properties {
@@ -55,9 +55,9 @@ publishing {
         mavenJava(MavenPublication) {
             from components.java
         }
-    }*/
+    }
 
-   /* repositories {
+    repositories {
         maven {
             url "https://mymavenrepo.com/repo/cEmjfkxugPlzLxXg1A2B/"  // Gradle va lire depuis gradle.properties
             credentials {
