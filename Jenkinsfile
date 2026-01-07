@@ -22,6 +22,11 @@ pipeline {
                archiveArtifacts 'reports/example-report.json'
             }
         }
+        stage('Analyse du code'){
+        steps{
+        bat './gradlew sonarqube'
+        }
+        }
 
 
 

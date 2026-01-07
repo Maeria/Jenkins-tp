@@ -24,7 +24,7 @@ dependencies {
 test {
     useJUnit()
     //finalizedBy "generateCucumberReports", "jacocoTestReport","sonar"
-    //finalizedBy  "jacocoTestReport","sonar"
+    finalizedBy  "sonar"
 }
 
 
@@ -38,7 +38,7 @@ test {
     }
 }*/
 
-/*sonar{
+sonar{
     properties {
         property "sonar.login", project.findProperty("SONAR_TOKEN")
         property "sonar.projectKey", "tp5_buildtools"
@@ -49,7 +49,7 @@ test {
         property "sonar.junit.reportPaths", "$buildDir/test-results/test"
         property "sonar.jacoco.reportPaths", "$buildDir/reports/jacoco/jacocoTestReport.xml"
     }
-}*/
+}
 /*publishing {
     publications {
         mavenJava(MavenPublication) {
