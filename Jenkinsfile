@@ -1,27 +1,21 @@
 pipeline {
     agent any
+
     stages {
         stage('Build') {
             steps {
-
-                bat 'gradlew build'
-
+                bat './gradlew clean build'
             }
         }
-        stage('Jacoco Coverage') {
+        stage('Test') {
             steps {
-                bat 'gradlew jacocoTestReport'
-            }
-            post {
-                always {
-                    jacoco(execPattern: '**/build/jacoco/*.exec', classPattern: '**/classes/java/main', sourcePattern: '**/src/main/java', exclusionPattern: '')
-                }
+                bat './gradlew test'
             }
         }
-        stage('Cucumber'){
-        steps{
+        stage('Jacoco Report') {
+            steps {
+                bat './gradlew jacocoTestReport'
+            }
         }
-        }
-
     }
 }
