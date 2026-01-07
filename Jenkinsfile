@@ -18,7 +18,6 @@ pipeline {
 
         stage('Cucumber Report') {
             steps {
-
                //bat './gradlew cucumber'
                archiveArtifacts 'reports/example-report.json'
             }
