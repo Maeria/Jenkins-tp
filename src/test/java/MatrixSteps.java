@@ -1,4 +1,4 @@
-/*import com.example.exception.NoSquareException;
+import com.example.exception.NoSquareException;
 import com.example.model.Matrix;
 import com.example.service.MatrixMathematics;
 import io.cucumber.datatable.DataTable;
@@ -146,4 +146,4 @@ public class MatrixSteps {
 
     }
 }
-*/
+
