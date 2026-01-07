@@ -7,29 +7,34 @@ pipeline {
                 bat './gradlew clean build'
             }
         }
-        stage('Test') {
+        stage('tests unitaires') {
             steps {
                 bat './gradlew test'
+                //archiver
+                archiveArtifacts 'build/test-results/**/*.xml'
+                archiveArtifacts 'build/reports/tests/**/*.html'
             }
         }
-        stage('Jacoco Report') {
-            steps {
-                bat './gradlew jacocoTestReport'
-            }
-        }
+
         stage('Cucumber Report') {
             steps {
-                bat 'java -cp "path\\to\\cucumber-jars;build\\classes" io.cucumber.core.cli.Main --plugin json:reports/cucumber.json --glue com.belhadjmaria.stepdefs src/test/resources/features'
-                bat 'java -jar path\\to\\cucumber-reporting.jar --input reports/cucumber.json --output reports/cucumber-html'
+               bat './gradlew cucumber'
+               archiveArtifacts 'build/reports/cucumber/*.json'
             }
         }
+         post {
+                        always {
+                            echo "Phase Test terminée"
+                        }
+                        success {
+                            echo "Tous les tests unitaires et Cucumber ont réussi"
+                        }
+                        failure {
+                            echo "Échec dans les tests unitaires ou Cucumber "
+                        }
+                    }
 
-          stage('SonarQube Analysis') {
-                     steps {
-                             bat './gradlew sonarqube'
 
-                     }
-                 }
 
     }
 }
