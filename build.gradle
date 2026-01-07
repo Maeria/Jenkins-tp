@@ -32,7 +32,7 @@ test {
 }
 
 
-jacocoTestReport {
+/*jacocoTestReport {
     dependsOn test
 
     reports {
@@ -40,7 +40,7 @@ jacocoTestReport {
         csv.required = false
         html.outputLocation = file("$buildDir/reports/jacoco")
     }
-}
+}*/
 
 /*sonar{
     properties {
