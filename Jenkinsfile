@@ -27,15 +27,15 @@ pipeline {
 
     }
     post {
-                            always {
-                                echo "Phase Test terminée"
-                            }
-                            success {
-                                echo "Tous les tests unitaires et Cucumber ont réussi"
-                            }
-                            failure {
-                                echo "Échec dans les tests unitaires ou Cucumber "
-                            }
-                        }
+      always {
+     echo "Phase Test terminée"
+       }
+        success {
+         echo "Tous les tests unitaires et Cucumber ont réussi"
+       }
+      failure {
+      echo "Échec dans les tests unitaires ou Cucumber "
+         }
+      }
 
 }

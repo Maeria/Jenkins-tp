@@ -20,11 +20,7 @@ dependencies {
     testImplementation 'io.cucumber:cucumber-junit:6.0.0'
 }
 
-cucumberReports {
-    outputDir = file('F:\\2CS\\S1\\OGL\\projets\\tp-Jenkins\\tp\\reports')
-    buildId = '0'
-    reports = files('F:\\2CS\\S1\\OGL\\projets\\tp-Jenkins\\tp\\reports\\example-report.json')
-}
+
 test {
     useJUnit()
     //finalizedBy "generateCucumberReports", "jacocoTestReport","sonar"
