@@ -22,19 +22,20 @@ pipeline {
                archiveArtifacts 'build/reports/cucumber/*.json'
             }
         }
-         post {
-                        always {
-                            echo "Phase Test terminée"
-                        }
-                        success {
-                            echo "Tous les tests unitaires et Cucumber ont réussi"
-                        }
-                        failure {
-                            echo "Échec dans les tests unitaires ou Cucumber "
-                        }
-                    }
 
 
 
     }
+    post {
+                            always {
+                                echo "Phase Test terminée"
+                            }
+                            success {
+                                echo "Tous les tests unitaires et Cucumber ont réussi"
+                            }
+                            failure {
+                                echo "Échec dans les tests unitaires ou Cucumber "
+                            }
+                        }
+
 }
