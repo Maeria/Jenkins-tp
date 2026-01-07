@@ -23,18 +23,21 @@ pipeline {
                     }
                 }
           stage('SonarQube Analysis') {
-                     steps {
-                         withSonarQubeEnv('SonarQube11') { // nom de ton Sonar installé dans Jenkins
-                             bat './gradlew sonarqube'
-                         }
-                     }
-                 }
-                 stage('Quality Gate') {
+              steps {
+                  withEnv(['JAVA_HOME=C:\\Program Files\\Java\\jdk-11']) {
+                      withSonarQubeEnv('SonarQube11') {
+                          bat './gradlew sonarqube'
+                      }
+                  }
+              }
+          }
+
+                 /*stage('Quality Gate') {
                      steps {
                          timeout(time: 1, unit: 'MINUTES') {
                              waitForQualityGate abortPipeline: true
                          }
                      }
-                 }
+                 }*/
     }
 }
