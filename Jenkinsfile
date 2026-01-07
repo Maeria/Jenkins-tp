@@ -3,10 +3,13 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps {
-                bat './gradlew clean build'
-            }
-        }
+                            steps {
+                                bat './gradlew clean build'
+                                bat './gradlew javadoc'
+                                archiveArtifacts 'build/libs/*.jar'
+                                archiveArtifacts 'build/docs/javadoc/**'
+                            }
+         }
         stage('tests unitaires') {
             steps {
                 bat './gradlew test'
