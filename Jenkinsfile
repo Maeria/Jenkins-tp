@@ -22,11 +22,12 @@ pipeline {
                archiveArtifacts 'reports/example-report.json'
             }
         }
-        stage('Analyse du code'){
-        steps{
-        withSonarQubeEnv('MySonarQubeServer')
-        bat './gradlew sonarqube'
-        }
+        stage('Analyse du code') {
+            steps {
+                withSonarQubeEnv('MySonarQubeServer') {  // <-- Attention ici
+                    bat './gradlew sonarqube'
+                }
+            }
         }
         stage('Code Quality') {
          steps {
