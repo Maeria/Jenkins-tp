@@ -17,5 +17,10 @@ pipeline {
                 bat './gradlew jacocoTestReport'
             }
         }
+         stage('Cucumber Report') {
+                    steps {
+                        bat './gradlew generateCucumberReports'
+                    }
+                }
     }
 }
