@@ -28,12 +28,19 @@ pipeline {
         }
         }
         stage('Code Quality') {
-        steps{
-        def qg = waitForQualityGate()
+         steps {
+                // Toutes les instructions Groovy doivent être dans "script {}"
+                script {
+                    
+                        def qg = waitForQualityGate()
                         if (qg.status != 'OK') {
-                            error "Quality Gate échoué: ${qg.status}"
+                            error " Quality Gate échoué: ${qg.status}"
+                        } else {
+                            echo " Quality Gate OK"
                         }
-                        }
+
+                }
+            }
         }
 
 
