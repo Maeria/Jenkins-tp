@@ -18,6 +18,7 @@ pipeline {
 
         stage('Cucumber Report') {
             steps {
+              withSonarQubeEnv('MySonarQubeServer')
                //bat './gradlew cucumber'
                archiveArtifacts 'reports/example-report.json'
             }
@@ -31,13 +32,13 @@ pipeline {
          steps {
                 // Toutes les instructions Groovy doivent être dans "script {}"
                 script {
-                    
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error " Quality Gate échoué: ${qg.status}"
-                        } else {
-                            echo " Quality Gate OK"
-                        }
+                 echo "⏳ Vérification Quality Gate"
+                                def qg = waitForQualityGate() // <-- va attendre le résultat de l'analyse ci-dessus
+                                if (qg.status != 'OK') {
+                                    error " Quality Gate échoué: ${qg.status}"
+                                } else {
+                                    echo " Quality Gate OK"
+                                }
 
                 }
             }
