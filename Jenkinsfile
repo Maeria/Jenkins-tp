@@ -23,15 +23,11 @@ pipeline {
                     }
                 }
           stage('SonarQube Analysis') {
-              steps {
-                  withEnv(['JAVA_HOME=C:\\Program Files\\Java\\jdk-11']) {
-                      withSonarQubeEnv('SonarQube11') {
-                          bat './gradlew sonarqube'
-                      }
-                  }
-              }
-          }
+                     steps {
+                             bat './gradlew sonarqube'
 
+                     }
+                 }
                  /*stage('Quality Gate') {
                      steps {
                          timeout(time: 1, unit: 'MINUTES') {
