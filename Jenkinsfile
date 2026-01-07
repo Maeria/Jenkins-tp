@@ -36,7 +36,7 @@ pipeline {
          steps {
                 // Toutes les instructions Groovy doivent être dans "script {}"
                 script {
-                 echo "⏳ Vérification Quality Gate"
+                 echo " Vérification Quality Gate"
                                 def qg = waitForQualityGate()
                                 if (qg.status != 'OK') {
                                     error " Quality Gate échoué: ${qg.status}"
@@ -48,9 +48,18 @@ pipeline {
             }
         }
 
-
-
     }
+    stage('Deploy') {
+        steps {
+            withCredentials([usernamePassword(credentialsId: 'maven-credentials-id',
+                                             usernameVariable: 'MAVEN_USER',
+                                             passwordVariable: 'MAVEN_PASSWORD')]) {
+                bat './gradlew publish -PMAVEN_USER=%MAVEN_USER% -PMAVEN_PASSWORD=%MAVEN_PASSWORD%'
+            }
+        }
+    }
+
+
     post {
       always {
      echo "Phase Test terminée"

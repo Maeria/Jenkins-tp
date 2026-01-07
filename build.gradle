@@ -50,7 +50,7 @@ sonar{
         property "sonar.jacoco.reportPaths", "$buildDir/reports/jacoco/jacocoTestReport.xml"
     }
 }
-/*publishing {
+publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
@@ -66,4 +66,4 @@ sonar{
             }
         }
     }
-}*/
+}
