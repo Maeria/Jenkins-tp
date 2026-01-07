@@ -42,7 +42,7 @@ jacocoTestReport {
     }
 }
 
-sonar{
+/*sonar{
     properties {
         property "sonar.login", project.findProperty("SONAR_TOKEN")
         property "sonar.projectKey", "tp5_buildtools"
@@ -53,7 +53,7 @@ sonar{
         property "sonar.junit.reportPaths", "$buildDir/test-results/test"
         property "sonar.jacoco.reportPaths", "$buildDir/reports/jacoco/jacocoTestReport.xml"
     }
-}
+}*/
 /*publishing {
     publications {
         mavenJava(MavenPublication) {
