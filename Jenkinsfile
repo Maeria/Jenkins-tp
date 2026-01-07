@@ -8,5 +8,16 @@ pipeline {
 
             }
         }
+        stage('Jacoco Coverage') {
+            steps {
+                bat 'gradlew jacocoTestReport'
+            }
+            post {
+                always {
+                    jacoco(execPattern: '**/build/jacoco/*.exec', classPattern: '**/classes/java/main', sourcePattern: '**/src/main/java', exclusionPattern: '')
+                }
+            }
+        }
+
     }
 }
