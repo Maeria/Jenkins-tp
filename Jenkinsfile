@@ -2,16 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                bat './gradlew clean build'
-                bat './gradlew javadoc'
-                archiveArtifacts 'build/libs/*.jar'
-                archiveArtifacts 'build/docs/javadoc/**'
-            }
-        }
 
-        stage('Tests Unitaires') {
+
+        stage('Test') {
             steps {
                 bat './gradlew test'
                 archiveArtifacts 'build/test-results/**/*.xml'
@@ -47,6 +40,14 @@ pipeline {
                 }
             }
         }
+         stage('Build') {
+                    steps {
+                        bat './gradlew clean build'
+                        bat './gradlew javadoc'
+                        archiveArtifacts 'build/libs/*.jar'
+                        archiveArtifacts 'build/docs/javadoc/**'
+                    }
+                }
 
         stage('Deploy') {
             steps {
