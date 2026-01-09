@@ -57,12 +57,12 @@ pipeline {
 
         stage('Notification') {
             steps {
-                slackSend(
-                    channel: '#general',
-                    color: 'good',
-                    message: "Le déploiement a réussi !",
-                    tokenCredentialId: 'slack-bot-token'
-                )
+                 slackSend(
+                            channel: '#tp-jenkins',
+                            message: " Déploiement réussi",
+                            color: 'good',
+                            tokenCredentialId: 'slack-bot-token'
+                        )
             }
         }
     }
