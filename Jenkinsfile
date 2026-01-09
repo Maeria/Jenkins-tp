@@ -27,14 +27,14 @@ pipeline {
         }
         stage('Analyse du code') {
             steps {
-                withSonarQubeEnv('sonar') {  // <-- Attention ici
+                withSonarQubeEnv('sonar') {
                     bat './gradlew sonarqube'
                 }
             }
         }
         stage('Code Quality') {
          steps {
-                // Toutes les instructions Groovy doivent être dans "script {}"
+
                 script {
                  echo " Vérification Quality Gate"
                                 def qg = waitForQualityGate()
@@ -48,14 +48,11 @@ pipeline {
             }
         }
     stage('Deploy') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'maven-credentials-id',
-                                                 usernameVariable: 'MAVEN_USER',
-                                                 passwordVariable: 'MAVEN_PASSWORD')]) {
-                    bat './gradlew publish -PMAVEN_USER=%MAVEN_USER% -PMAVEN_PASSWORD=%MAVEN_PASSWORD%'
-                }
-            }
+        steps {
+            bat './gradlew publish -PMAVEN_USER=%MAVEN_USER% -PMAVEN_PASSWORD=%MAVEN_PASSWORD%'
         }
+    }
+
     }
 
 
@@ -65,10 +62,10 @@ pipeline {
      echo "Phase Test terminée"
        }
         success {
-         echo "Tous les tests unitaires et Cucumber ont réussi"
+         echo "Tous les tests ont réussi"
        }
       failure {
-      echo "Échec dans les tests unitaires ou Cucumber "
+      echo "Échec  "
          }
       }
 
