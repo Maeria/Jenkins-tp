@@ -37,7 +37,7 @@ pipeline {
         stage('Code Quality') {
             steps {
                 script {
-                    echo "⏳ Vérification Quality Gate"
+                    echo "Vérification Quality Gate"
                     def qg = waitForQualityGate()
                     if (qg.status != 'OK') {
                         error "Quality Gate échoué: ${qg.status}"
