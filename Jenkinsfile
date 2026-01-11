@@ -8,6 +8,7 @@ pipeline {
             }
         }
 
+
        stage('Generate HTML report') {
                cucumber buildStatus: 'UNSTABLE',
                        reportTitle: 'My report',
