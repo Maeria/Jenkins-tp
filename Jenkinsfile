@@ -1,9 +1,6 @@
 pipeline {
     agent any
-
     stages {
-
-
         stage('Test') {
             steps {
                 bat './gradlew test'
@@ -14,7 +11,6 @@ pipeline {
 
         stage('Cucumber Report') {
             steps {
-                //bat './gradlew cucumber'
                 archiveArtifacts 'reports/example-report.json'
             }
         }
@@ -73,6 +69,11 @@ pipeline {
         }
         success {
             echo "Tous les tests ont réussi"
+            emailext(
+                        subject: " Build réussi: ${currentBuild.fullDisplayName}",
+                        body: "Le build ${env.BUILD_NUMBER} pour le projet ${env.JOB_NAME} a réussi.\n\nVoir les détails ici: ${env.BUILD_URL}",
+                        to: "mm_belhadj@esi.dz"
+                    )
         }
         failure {
             echo "Échec dans une ou plusieurs phases"
