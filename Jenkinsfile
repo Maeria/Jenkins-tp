@@ -4,15 +4,17 @@ pipeline {
         stage('Test') {
             steps {
                 bat './gradlew test'
-                JUnit 'build/test-results/**/*.xml'
+                junit 'build/test-results/**/*.xml'
             }
         }
 
-        stage('Cucumber Report') {
-            steps {
-                archiveArtifacts 'reports/example-report.json'
-            }
-        }
+       stage('Generate HTML report') {
+               cucumber buildStatus: 'UNSTABLE',
+                       reportTitle: 'My report',
+                       fileIncludePattern: 'reports/*.json',
+                       trendsLimit: 10,
+
+           }
 
         stage('Analyse du Code') {
             steps {
