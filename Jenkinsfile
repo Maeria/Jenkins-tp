@@ -62,7 +62,6 @@ pipeline {
             }
         }
     }
-
     post {
         always {
             echo "Phase Test terminée"
