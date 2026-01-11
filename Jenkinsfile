@@ -72,7 +72,7 @@ pipeline {
                         subject: " Build réussi: ",
                         body: "Le build a réussi.",
                         to: "rensciy@gmail.com"
-                    )
+                   )
         }
         failure {
             echo "Échec dans une ou plusieurs phases"
