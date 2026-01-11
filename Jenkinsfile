@@ -66,6 +66,7 @@ pipeline {
         always {
             echo "Phase Test terminée"
         }
+        
         success {
             echo "Tous les tests ont réussi"
             emailext(
