@@ -13,7 +13,7 @@ pipeline {
                cucumber buildStatus: 'UNSTABLE',
                        reportTitle: 'My report',
                        fileIncludePattern: 'reports/*.json',
-                       trendsLimit: 10,
+                       trendsLimit: 10
 
            }
 
