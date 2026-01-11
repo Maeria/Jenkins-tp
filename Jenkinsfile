@@ -4,8 +4,7 @@ pipeline {
         stage('Test') {
             steps {
                 bat './gradlew test'
-                archiveArtifacts 'build/test-results/**/*.xml'
-                archiveArtifacts 'build/reports/tests/**/*.html'
+                JUnit 'build/test-results/**/*.xml'
             }
         }
 
@@ -66,7 +65,7 @@ pipeline {
         always {
             echo "Phase Test terminée"
         }
-        
+
         success {
             echo "Tous les tests ont réussi"
             emailext(
